@@ -4,7 +4,7 @@ public class Personagem {
 
 	private String name;
 	private double hp, mp;
-//	private int forca, constituicao, inteligencia, sorte;
+	private double forca, constituicao, inteligencia, sorte;
 //	private int pStatus, pSkill;
 
 	public Personagem() {
@@ -16,6 +16,17 @@ public class Personagem {
 		this.mp = mp;
 	}
 	
+	public Personagem(String name, double hp, double mp, int forca, int constituicao, int inteligencia, int sorte) {
+		super();
+		this.name = name;
+		this.hp = hp;
+		this.mp = mp;
+		this.forca = forca;
+		this.constituicao = constituicao;
+		this.inteligencia = inteligencia;
+		this.sorte = sorte;
+	}
+
 	//encapsulamento
 	public String getName() {
 		return name;
@@ -41,6 +52,40 @@ public class Personagem {
 		this.mp = mp;
 	}
 
+	public double getForca() {
+		return forca;
+	}
+
+	public void setForca(double forca) {
+		this.forca = forca;
+	}
+
+	public double getConstituicao() {
+		return constituicao;
+	}
+
+	public void setConstituicao(double constituicao) {
+		this.constituicao = constituicao;
+	}
+
+	public double getInteligencia() {
+		return inteligencia;
+	}
+
+	public void setInteligencia(double inteligencia) {
+		this.inteligencia = inteligencia;
+	}
+
+	public double getSorte() {
+		return sorte;
+	}
+
+	public void setSorte(double sorte) {
+		this.sorte = sorte;
+	}
+	
+	
+
 	//metodos
 	public String ataqueBase1() {
 		return "usando ataque basico";
@@ -59,7 +104,7 @@ public class Personagem {
 	}
 	
 	public String toString() {
-		return "alguma coisa";
+		return "Perfil: Nome: "+ name + ", HP: " + hp + ", MP: " + mp;
 	}
 
 }
