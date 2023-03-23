@@ -1,110 +1,165 @@
 package personagens;
 
 public class Personagem {
-
-	private String name;
-	private double hp, mp;
-	private double forca, constituicao, inteligencia, sorte;
-//	private int pStatus, pSkill;
-
-	public Personagem() {
-	}
-	
-	public Personagem(String name, double hp, double mp) {
-		this.name = name;
-		this.hp = hp;
-		this.mp = mp;
-	}
-	
-	public Personagem(String name, double hp, double mp, int forca, int constituicao, int inteligencia, int sorte) {
-		super();
-		this.name = name;
-		this.hp = hp;
-		this.mp = mp;
-		this.forca = forca;
-		this.constituicao = constituicao;
-		this.inteligencia = inteligencia;
-		this.sorte = sorte;
+    private String nome;
+    private int vida;
+    private int mana;
+    private int forca;
+    private int defesa;
+    private int nivel;
+    private int experiencia;
+    
+    public Personagem(String nome) {
+        this.nome = nome;
+        this.vida = 100;
+        this.mana = 50;
+        this.forca = 15;
+        this.defesa = 10;
+        this.nivel = 1;
+        this.experiencia = 0;
+    }
+    
+    
+    
+    public String getNome() {
+		return nome;
 	}
 
-	//encapsulamento
-	public String getName() {
-		return name;
+
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+
+
+	public int getVida() {
+		return vida;
 	}
 
-	public double getHp() {
-		return hp;
+
+
+	public void setVida(int vida) {
+		this.vida = vida;
 	}
 
-	public void setHp(double hp) {
-		this.hp = hp;
+
+
+	public int getMana() {
+		return mana;
 	}
 
-	public double getMp() {
-		return mp;
+
+
+	public void setMana(int mana) {
+		this.mana = mana;
 	}
 
-	public void setMp(double mp) {
-		this.mp = mp;
-	}
 
-	public double getForca() {
+
+	public int getForca() {
 		return forca;
 	}
 
-	public void setForca(double forca) {
+
+
+	public void setForca(int forca) {
 		this.forca = forca;
 	}
 
-	public double getConstituicao() {
-		return constituicao;
+
+
+	public int getDefesa() {
+		return defesa;
 	}
 
-	public void setConstituicao(double constituicao) {
-		this.constituicao = constituicao;
+
+
+	public void setDefesa(int defesa) {
+		this.defesa = defesa;
 	}
 
-	public double getInteligencia() {
-		return inteligencia;
+
+
+	public int getNivel() {
+		return nivel;
 	}
 
-	public void setInteligencia(double inteligencia) {
-		this.inteligencia = inteligencia;
+
+
+	public void setNivel(int nivel) {
+		this.nivel = nivel;
 	}
 
-	public double getSorte() {
-		return sorte;
+
+
+	public int getExperiencia() {
+		return experiencia;
 	}
 
-	public void setSorte(double sorte) {
-		this.sorte = sorte;
-	}
-	
-	
 
-	//metodos
-	public String ataqueBase1() {
-		return "usando ataque basico";
+
+	public void setExperiencia(int experiencia) {
+		this.experiencia = experiencia;
 	}
 
-	public String ataqueBase2() {
-		return "usando outro ataque basico";
-	}
 
-	public String ataqueEspecial1() {
-		return "usando ataque especial";
-	}
 
-	public String ataqueEspecial2() {
-		return "usando outro ataque especial";
-	}
-	
+	public void atacar(Monstro monstro) {
+        int dano = this.forca - monstro.getDefesa();
+        if (dano > 0) {
+           
+            System.out.println(this.nome + " atacou " + monstro.getNome() + " causando " + dano + " de dano!");
+        } else {
+            System.out.println(this.nome + " atacou " + monstro.getNome() + " mas não causou dano!");
+        }
+        monstro.receberDano(dano);
+    }
+    
+    public void defender() {
+        this.defesa += 2;
+        System.out.println(this.nome + " está defendendo!");
+    }
+    
+//    public void usarPoção(Poção poção) {
+//        int vidaRecuperada = poção.getEfeito();
+//        this.vida += vidaRecuperada;
+//        System.out.println(this.nome + " usou uma poção de cura e recuperou " + vidaRecuperada + " de vida!");
+//    }
+    
+    public void receberDano(int dano) {
+        this.vida -= dano;
+        System.out.println(this.nome + " recebeu " + dano + " de dano!");
+        if (this.vida <= 0) {
+            System.out.println(this.nome + " foi derrotado!");
+        }
+    }
+    
+    public void ganharExperiencia(int experiencia) {
+        this.experiencia += experiencia;
+        System.out.println(this.nome + " ganhou " + experiencia + " de experiência!");
+        if (this.experiencia >= this.nivel * 100) {
+            this.subirNivel();
+        }
+    }
+    
+    private void subirNivel() {
+        this.nivel++;
+        this.experiencia = 0;
+        this.vida += 10;
+        this.mana += 5;
+        this.forca += 2;
+        this.defesa += 1;
+        System.out.println(this.nome + " subiu para o nível " + this.nivel + "!");
+    }
+
+
+
+	@Override
 	public String toString() {
-		return "Perfil: Nome: "+ name + ", HP: " + hp + ", MP: " + mp;
+		return "Personagem [nome=" + nome + ", vida=" + vida + ", mana=" + mana + ", forca=" + forca + ", defesa="
+				+ defesa + ", nivel=" + nivel + ", experiencia=" + experiencia + "]";
 	}
-
+    
+   
 }
